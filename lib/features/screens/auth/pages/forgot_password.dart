@@ -1,11 +1,11 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:dartfri/features/pageImports.dart';
 import 'package:dartfri/features/screens/auth/pages/reset_sent.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../services/auth_service.dart';
+import '../../../palette.dart';
 
 
 class ForgotPasswordPage extends StatefulWidget {

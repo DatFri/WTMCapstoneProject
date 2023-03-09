@@ -65,6 +65,7 @@ dependencies:
   cached_network_image: ^3.2.3
   intl_phone_number_input:
   google_fonts: ^4.0.3
+  pin_code_fields:
 
 dev_dependencies:
   flutter_test:
@@ -82,7 +83,7 @@ flutter_icons:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 flutter_native_splash:
-  color: "#ffffff"
+  color: "#FFFFFF"
   image: assets/logo_noback.png
 
 # For information on the generic Dart part of this file, see the

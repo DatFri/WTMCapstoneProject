@@ -1,7 +1,6 @@
 
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dartfri/features/pageImports.dart';
 import 'package:dartfri/features/screens/appointment/pages/appointment_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

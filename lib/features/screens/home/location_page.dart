@@ -1,5 +1,4 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:dartfri/features/pageImports.dart';
 import 'package:dartfri/features/screens/dashboard/dashboard_page.dart';
 import 'package:dartfri/features/screens/home/data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,6 +15,7 @@ import 'package:provider/provider.dart';
 import '../../../keys.dart';
 import '../../../providers/places_provider.dart';
 import '../../../providers/user_provider.dart';
+import '../../palette.dart';
 import '../nearby_places/pages/nearby_places.dart';
 import '../wallet/pages/wallet_page.dart';
 

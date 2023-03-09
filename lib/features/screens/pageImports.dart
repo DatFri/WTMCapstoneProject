@@ -1,0 +1,10 @@
+export 'auth/pages/login.dart';
+export 'auth/pages/signup.dart';
+export 'onboarding/data.dart';
+export 'onboarding/slider.dart';
+export 'onboarding/slider_screen.dart';
+export '../palette.dart';
+export  'package:dartfri/providers/appointment_provider.dart';
+export 'package:dartfri/providers/places_provider.dart';
+export 'package:dartfri/providers/user_provider.dart';
+export '../palette.dart';

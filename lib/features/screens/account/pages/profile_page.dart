@@ -1,11 +1,12 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:dartfri/features/pageImports.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../palette.dart';
+import '../../auth/pages/login.dart';
 import 'about_us.dart';
 import 'edit_profile.dart';
 import 'faq_page.dart';
@@ -140,11 +141,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Terms and Conditions",style: TextStyle(color: Colors.grey),),
-                  // IconButton(
-                  //     onPressed: (){},
-                  //     icon:Icon(Icons.arrow_forward_ios,size: 14,))
+                  IconButton(
+                      onPressed: (){},
+                      icon:Icon(Icons.arrow_forward_ios,size: 14,))
                 ],
               ),
+              SizedBox(height: 20,),
               Row(
                 children: [
                   // SizedBox(

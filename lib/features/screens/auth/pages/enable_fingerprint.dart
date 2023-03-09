@@ -1,10 +1,10 @@
-import 'package:dartfri/features/pageImports.dart';
 import 'package:dartfri/features/screens/dashboard/dashboard_page.dart';
 import 'package:dartfri/services/local_auth_fingerprint.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:status_alert/status_alert.dart';
 
+import '../../../palette.dart';
 import 'link_fingerprint.dart';
 import 'login.dart';
 

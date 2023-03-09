@@ -1,9 +1,9 @@
-import 'package:dartfri/features/pageImports.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:status_alert/status_alert.dart';
 
 import '../../../../services/local_auth_fingerprint.dart';
+import '../../../palette.dart';
 
 class WalletPage extends StatefulWidget {
    WalletPage({Key? key}) : super(key: key);

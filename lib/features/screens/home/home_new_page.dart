@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dartfri/features/pageImports.dart';
 import 'package:dartfri/features/screens/home/data.dart';
+import 'package:dartfri/features/screens/nearby_places/pages/map.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import '../../../keys.dart';
 import '../../../providers/places_provider.dart';
 import '../../../providers/user_provider.dart';
+import '../../palette.dart';
 import '../appointment/pages/appointment_page.dart';
 import '../nearby_places/pages/nearby_places.dart';
 import '../wallet/pages/wallet_page.dart';
@@ -47,7 +48,7 @@ class HomeNewPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 (users.username) != '' ? Text('Hello , ${users.user.name}!',style: TextStyle(fontSize: 15,color: Palette.secondaryDartfri,fontWeight: FontWeight.w600),):
-                                Text('Welcome Back , !',style: TextStyle(fontSize: 22,color: Palette.secondaryDartfri),),
+                                Text('Welcome Back , !',style: TextStyle(fontSize: 15,color: Palette.secondaryDartfri),),
                                  SizedBox(height: 20,),
                                 Text('Your location',style: TextStyle(fontSize: 13,color: Palette.secondaryDartfri),),
                                 SizedBox(
@@ -164,7 +165,7 @@ class HomeNewPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(height: 5,),
+                          SizedBox(height: 10,),
                           Container(
                             padding: EdgeInsets.fromLTRB(15, 0, 10, 5),
 
@@ -184,7 +185,7 @@ class HomeNewPage extends StatelessWidget {
                                     itemBuilder: (BuildContext context, int index) {
                                       return GestureDetector(
                                         onTap: (){
-                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>NearbyPlaces()));
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MapPage()));
                                         },
                                         child: Container(
                                             width: 80,
@@ -230,7 +231,7 @@ class HomeNewPage extends StatelessWidget {
                                     Row(
                                       children: [
                                         TextButton(onPressed: (){
-                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>NearbyPlaces()));
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MapPage()));
 
                                         }, child:  Text('see all',style: TextStyle(fontWeight: FontWeight.w600),),
                                         ),
@@ -302,7 +303,7 @@ class HomeNewPage extends StatelessWidget {
                                                       rating: double.parse(places.places[index].rating!),
                                                       itemBuilder: (context, index) => Icon(
                                                         Icons.star,
-                                                        color: Colors.amber,
+                                                        color: Palette.primaryDartfri,
                                                       ),
                                                       itemCount: 5,
                                                       itemSize: 20.0,
@@ -314,6 +315,7 @@ class HomeNewPage extends StatelessWidget {
                                     },
 
                                   ),),
+                                SizedBox(height: 20,),
                                 Text('Special Packages and Offers',style: TextStyle(fontWeight: FontWeight.w600),),
                                 SizedBox(height: 10,),
                                 Container(

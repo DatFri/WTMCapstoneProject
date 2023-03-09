@@ -1,10 +1,10 @@
-import 'package:dartfri/features/pageImports.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
 
+import '../../../palette.dart';
 import '../widgets/faq_expansion.dart';
 
 

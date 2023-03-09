@@ -79,7 +79,10 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: InputDecoration(
                             labelText: 'Email Address',
                             hintText: 'johndoe@gmail.com',
-                            border: OutlineInputBorder(),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)
+
+                            ),
                             // Here is key idea
                             suffixIcon: IconButton(
                               icon: Icon(Icons.person_outline),
@@ -104,7 +107,9 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: InputDecoration(
                             labelText: 'Password',
                             hintText: 'Enter your password',
-                            border: OutlineInputBorder(),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20)
+                            ),
 
                             // Here is key idea
                             suffixIcon: IconButton(
@@ -144,8 +149,11 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(height: 60),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)
+                              ),
                               minimumSize: Size.fromHeight(
-                                  55), // fromHeight use double.infinity as width and 40 is the height
+                                  45), // fromHeight use double.infinity as width and 40 is the height
                             ),
                             onPressed: () {
                               onPressed(_emailController.text,

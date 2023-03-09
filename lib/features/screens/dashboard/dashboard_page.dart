@@ -19,15 +19,15 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  int _currentIndex = 1;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       body:  IndexedStack(
           children: [
-            BookingsPage(),
             HomeNewPage(),
+            BookingsPage(),
             WalletPage(),
             NotificationPage(),
             ProfilePage()
@@ -44,32 +44,33 @@ class _DashboardPageState extends State<DashboardPage> {
         items:  [
           BottomNavigationBarItem(
               icon: FaIcon(
-                CupertinoIcons.book,
-                // FontAwesomeIcons.book,
-                color: Colors.black,
-              ),
-              label: "Bookings"),
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                CupertinoIcons.car_detailed,
+                CupertinoIcons.home,
                 color: Colors.black,
               ),
               label:  "Home"),
           BottomNavigationBarItem(
               icon: FaIcon(
-                Icons.wallet,
+                CupertinoIcons.book,
+                // FontAwesomeIcons.book,
+                color: Colors.black,
+              ),
+              label: "Bookings"),
+
+          BottomNavigationBarItem(
+              icon: FaIcon(
+                Icons.account_balance_wallet_outlined,
                 color: Colors.black,
               ),
               label: "Wallet"),
           BottomNavigationBarItem(
               icon: FaIcon(
-                Icons.notifications,
+                Icons.notifications_none,
                 color: Colors.black,
               ),
-              label: "Notification"),
+              label: "Notification",),
           BottomNavigationBarItem(
               icon: FaIcon(
-                CupertinoIcons.settings_solid,
+                CupertinoIcons.person_circle,
                 // FontAwesomeIcons.,
                 color: Colors.black,
               ),

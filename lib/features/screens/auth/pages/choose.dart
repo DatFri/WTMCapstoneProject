@@ -1,7 +1,10 @@
-import 'package:dartfri/features/pageImports.dart';
+import 'package:dartfri/features/screens/auth/pages/signup.dart';
 import 'package:dartfri/features/screens/auth/pages/signup_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../palette.dart';
+import 'login.dart';
 
 class ChoosePage extends StatelessWidget {
   const ChoosePage({Key? key}) : super(key: key);
@@ -30,6 +33,9 @@ class ChoosePage extends StatelessWidget {
                       children: [
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)
+                              ),
                               minimumSize: Size.fromHeight(
                                   45), // fromHeight use double.infinity as width and 40 is the height
                             ),
@@ -48,6 +54,10 @@ class ChoosePage extends StatelessWidget {
                           children: [
                             OutlinedButton(
                                 style: OutlinedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)
+
+                                  ),
                                   side: BorderSide(color: Palette.primaryDartfri,width: 2),
 
                                   minimumSize: Size.fromHeight(

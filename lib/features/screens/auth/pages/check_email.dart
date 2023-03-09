@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:bot_toast/bot_toast.dart';
-import 'package:dartfri/features/pageImports.dart';
 import 'package:dartfri/features/screens/dashboard/dashboard_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:status_alert/status_alert.dart';
 
+import '../../../palette.dart';
 import '../../home/location_page.dart';
 import 'login.dart';
 

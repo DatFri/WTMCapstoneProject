@@ -1,9 +1,9 @@
-import 'package:dartfri/features/pageImports.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../providers/user_provider.dart';
+import '../../../palette.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({Key? key}) : super(key: key);
@@ -13,35 +13,39 @@ class NotificationPage extends StatelessWidget {
     final user = Provider.of<UserProvider>(context);
 
     return SafeArea(child: Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text('Notifications',style: TextStyle(color: Colors.black),),
+      ),
       body: Container(
         child: Column(
           children: [
-            Container(
-              color: Color(0xFFB0E3E8),
-              height: MediaQuery.of(context).size.height *0.12,
-              padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
-              child: Column(
-                children: [
-                  SizedBox(height: 20,),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-
-                      Text('Notifications',style: TextStyle(fontSize: 20,color: Colors.black),),
-
-                      IconButton(onPressed: (){
-                        Navigator.pop(context);
-                      }, icon:  Icon(Icons.notifications,size: 30,color: Colors.black,),),
-
-
-
-
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   color: Color(0xFFB0E3E8),
+            //   height: MediaQuery.of(context).size.height *0.12,
+            //   padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+            //   child: Column(
+            //     children: [
+            //       // SizedBox(height: 20,),
+            //
+            //       // Row(
+            //       //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       //   children: [
+            //       //
+            //       //     Text('Notifications',style: TextStyle(fontSize: 20,color: Colors.black),),
+            //       //
+            //       //     // IconButton(onPressed: (){
+            //       //     //   Navigator.pop(context);
+            //       //     // }, icon:  Icon(Icons.notifications,size: 30,color: Colors.black,),),
+            //       //
+            //       //
+            //       //
+            //       //
+            //       //   ],
+            //       // ),
+            //     ],
+            //   ),
+            // ),
             Expanded(
               child: Container(
                 // blogs.search ? blogs.newBlogs.length :

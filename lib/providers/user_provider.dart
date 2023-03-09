@@ -13,6 +13,8 @@ class UserProvider extends ChangeNotifier{
   bool photonull = true;
   String username ='';
   String photoUrl='';
+  String code = '';
+  String phoneNumber = '';
   var _auth ;
    String currentAddress = '';
   late Position currentPosition;
@@ -24,6 +26,10 @@ class UserProvider extends ChangeNotifier{
     _auth = Auth();
     isLoaded = false;
     getUserDetails();
+  }
+  void setPhone(String number){
+    phoneNumber = number;
+    notifyListeners();
   }
   void setPosition(Position position){
     currentPosition = position;
@@ -48,7 +54,18 @@ class UserProvider extends ChangeNotifier{
     getNotifications();
 
   }
-Future<List> getNotifications() async {
+  Future<void> verifyPhone(String number,context)async {
+    code = await _auth.verifyPhone(number, context);
+    notifyListeners();
+
+  }
+
+  Future<void> verifyCode(context, String smsCode) async {
+    await _auth.verifyCode(context,code, smsCode);
+    notifyListeners();
+  }
+
+  Future<List> getNotifications() async {
   notifications = await _auth.getNotifications(user.uid);
   // username = user.name!;
   notifyListeners();

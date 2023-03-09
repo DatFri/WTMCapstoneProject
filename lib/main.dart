@@ -1,9 +1,9 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:dartfri/features/pageImports.dart';
 import 'package:dartfri/providers/appointment_provider.dart';
 import 'package:dartfri/providers/places_provider.dart';
 import 'package:dartfri/providers/user_provider.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +15,11 @@ import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
+import 'features/palette.dart';
+import 'features/screens/auth/pages/login.dart';
+import 'features/screens/auth/pages/otp.dart';
+import 'features/screens/dashboard/dashboard_page.dart';
+import 'features/screens/onboarding/slider.dart';
 import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -82,6 +87,12 @@ class _MyAppState extends State<MyApp> {
           splashTransition: SplashTransition.fadeTransition,
           splashIconSize: 250,
           backgroundColor: Colors.white),
+      routes: {
+        // 'verify' : (context)=> VerifyPage(),
+        "home" : (context) => DashboardPage(),
+
+      },
     );
+
   }
 }

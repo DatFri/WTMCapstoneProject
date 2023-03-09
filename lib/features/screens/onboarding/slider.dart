@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:dartfri/features/pageImports.dart';
 import 'package:dartfri/features/screens/auth/pages/choose.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';

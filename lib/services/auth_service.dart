@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartfri/features/screens/auth/pages/check_email.dart';
+import 'package:dartfri/features/screens/auth/pages/otp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class Auth{
   String? errorMessage;
   final _auth = FirebaseAuth.instance;
 
-  Future signUp(String email, String password,userModel,context) async {
+  Future signUp(String email, String password, Users userModel,context) async {
     // if (_formKey.currentState!.validate()) {
     // final directory = await getApplicationDocumentsDirectory();
     // box1 = await Hive.openBox('personaldata');
@@ -31,6 +32,7 @@ class Auth{
     try {
       showDialog(context: context,barrierDismissible: false,
           builder: (context) => const Center(child: CircularProgressIndicator()));
+
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => { postDetailsToFirestore(userModel,context)})
@@ -39,6 +41,7 @@ class Auth{
         BotToast.showText(text:e!.message);
 
       });
+      // await verifyPhone(userModel, context);
     } on FirebaseAuthException catch (error) {
 
       switch (error.code) {
@@ -73,9 +76,9 @@ class Auth{
   }
   postDetailsToFirestore(Users users,context) async {
     User? user=_auth.currentUser;
-    users.email = user!.email;
+    // users.email = user!.email;
     users.uid = user!.uid;
-    users.photoUrl = user!.photoURL;
+    // users.photoUrl = user!.photoURL;
 
     // sendVerificationCode(context, userModel.email );
 
@@ -99,7 +102,11 @@ class Auth{
         .set(users.toJson());
     BotToast.showText(text: "Account created successfully :) ");
 
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>  CheckMail(email : users.email))
 
+    );
   }
 
   Future signIn(context,email,password) async {
@@ -216,5 +223,36 @@ class Auth{
     }
     return notifications;
   }
-
+  // Future<String> verifyPhone(Users userModel, BuildContext context) async {
+  //   print('phoooooooooooooooooooooo${userModel.phone}');
+  //   String code = "";
+  //   await FirebaseAuth.instance.verifyPhoneNumber(
+  //     phoneNumber: '${userModel.phone}',
+  //     verificationCompleted: (PhoneAuthCredential credential) {},
+  //     verificationFailed: (FirebaseAuthException e) {},
+  //     codeSent: (String verificationId, int? resendToken) {
+  //       Navigator.push(context, MaterialPageRoute(builder: (context)=>VerifyPage()));
+  //       code = verificationId;
+  //     },
+  //     codeAutoRetrievalTimeout: (String verificationId) {},
+  //   );
+  //
+  //
+  //   return code;
+  // }
+  //
+  // Future<void> verifyCode(context, String code , String smsCode) async {
+  //   try{
+  //     PhoneAuthCredential credential = PhoneAuthProvider.credential(
+  //         verificationId: code, smsCode: smsCode);
+  //     print("oneeeeeeeeee "+ code);
+  //     print("oneeeeeeeeee "+ smsCode);
+  //     await FirebaseAuth.instance.signInWithCredential(credential);
+  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>DashboardPage()));
+  //   }catch(e){
+  //     print("Wrong Otp");
+  //   }
+  //
+  //
+  // }
 }

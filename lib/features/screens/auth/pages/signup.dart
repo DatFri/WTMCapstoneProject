@@ -1,12 +1,14 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:dartfri/features/pageImports.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../providers/user_provider.dart';
 import '../../../../services/auth_service.dart';
+import '../../../palette.dart';
 import '../models/user.dart';
 import 'login.dart';
 
@@ -35,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController controller = TextEditingController();
 
   String initialCountry = 'NG';
-  PhoneNumber number = PhoneNumber(isoCode: 'NG');
+  PhoneNumber number = PhoneNumber(isoCode: 'UG');
   String phone = "9900265566";
   final formKey = GlobalKey<FormState>();
 
@@ -47,6 +49,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+
     return Scaffold(
         body: Container(
             padding: const EdgeInsets.all(20),
@@ -57,7 +61,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(height: 50),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.15),
 
                             Align(
                               alignment: Alignment.center,
@@ -70,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         // SizedBox(
                         //   height: 2,
                         // ),
-                        SizedBox(height: 50),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
 
                         SizedBox(
                           height: 70,
@@ -82,7 +86,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             decoration: InputDecoration(
                               labelText: 'Full name',
                               hintText: 'John Doe',
-                              border: OutlineInputBorder(),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)
+                              ),
                               // Here is key idea
                               suffixIcon: IconButton(
                                 icon: Icon(Icons.person_outline),
@@ -105,6 +111,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
                               onInputChanged: (PhoneNumber number) {
                                 print(number.phoneNumber);
+                                phone = number.phoneNumber!;
+
                               },
                               // onInputValidated: (bool value) {
                               //   print(value);
@@ -128,7 +136,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                             Positioned(
-                              top: 17,
+                              top: 12,
                               left: 90,
                               height: 30,
                               child: VerticalDivider(
@@ -154,7 +162,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             decoration: InputDecoration(
                               labelText: 'Email Address',
                               hintText: 'johndoe@gmail.com',
-                              border: OutlineInputBorder(),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20)
+
+                              ),
 
                               // Here is key idea
                               suffixIcon: IconButton(
@@ -165,8 +176,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
-
+                        SizedBox(height: 10),
+                        //
                         SizedBox(
                           height: 70,
                           child: TextFormField(
@@ -182,7 +193,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             decoration: InputDecoration(
                               labelText: 'Password',
                               hintText: 'Min of 6 characters',
-                              border: OutlineInputBorder(),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)
+                              ),
 
                               // Here is key idea
                               suffixIcon: IconButton(
@@ -203,7 +216,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        // SizedBox(height: 20),
 
                         // SizedBox(height:3,),
                         Container(
@@ -250,14 +263,17 @@ class _SignUpPageState extends State<SignUpPage> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 60),
+                        SizedBox(height: 30),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)
+                              ),
                               minimumSize: Size.fromHeight(
-                                  55), // fromHeight use double.infinity as width and 40 is the height
+                                  45), // fromHeight use double.infinity as width and 40 is the height
                             ),
                             onPressed: () {
-                              onPressed();
+                              onPressed(userProvider);
                             },
                             child: const Text(
                               'Sign up',
@@ -283,7 +299,7 @@ class _SignUpPageState extends State<SignUpPage> {
         context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
-  void onPressed() {
+  Future<void> onPressed(UserProvider userProvider) async {
     final isValid = formKey.currentState!.validate();
 
     if (isValid && _checkboxValue == true) {
@@ -291,11 +307,14 @@ class _SignUpPageState extends State<SignUpPage> {
       // writing all the values
 
       userModel.name = _nameController.text;
-      userModel.phone = controller.text;
-      print(userModel);
+      userModel.email = _emailController.text;
+      userModel.phone = phone;
+      // print("lllllllllllllllllllllll${phone}");
 
-      auth.signUp(_emailController.text, _userPasswordController.text,
+      await auth.signUp(_emailController.text.trim(),_userPasswordController.text.trim(),
           userModel, context);
+      userProvider.setPhone(phone);
+      Navigator.pushNamed(context, 'verify');
       errorMessage = auth.errorMessage;
     } else {
       BotToast.showText(text: "Allow terms and conditions and fill all fields");
