@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dartfri/features/screens/home/carwash_detail.dart';
 import 'package:dartfri/features/screens/home/data.dart';
 import 'package:dartfri/features/screens/nearby_places/pages/map.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -254,7 +255,7 @@ class HomeNewPage extends StatelessWidget {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(builder: (context) {
-                                              return AppointmentFormPage(place: places.places[index]);
+                                              return CarwashDetail(place: places.places[index]);
                                             }),
                                           );
                                           // Navigator.push(context, MaterialPageRoute(builder: (context)=>NearbyPlaces()));

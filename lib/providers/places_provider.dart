@@ -1,5 +1,6 @@
 import 'package:dartfri/features/screens/nearby_places/models/place.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../features/screens/auth/models/user.dart';
 import '../features/screens/nearby_places/models/offer.dart';
@@ -12,6 +13,7 @@ class PlacesProvider extends ChangeNotifier {
   late Auth _auth;
   List<Place> places = [];
   List<Offer> offers = [];
+  late   Set<Marker> markers = new Set();
 
   List<Place> newPlaces = [];
   List<Offer> newOffers = [];
@@ -31,15 +33,23 @@ class PlacesProvider extends ChangeNotifier {
     city = place;
     notifyListeners();
   }
-  Future<void> getAllPlaces() async {
+  void setMarkers(Set<Marker> marker){
+    markers = marker;
+    notifyListeners();
+  }
+  Future<List> getAllPlaces() async {
     places = await _placeService.getAllPlaces();
     newPlaces = places;
     notifyListeners();
+    return places;
   }
   Future<void> getAllOffers() async {
     offers = await _placeService.getAllOffers();
     newOffers = offers;
     notifyListeners();
+  }
+  Set<Marker> getMarkers()  {
+    return markers;
   }
   void setSearch(bool bool){
     search = bool;
@@ -77,4 +87,5 @@ class PlacesProvider extends ChangeNotifier {
     fav = favs;
     notifyListeners();
   }
+
 }
